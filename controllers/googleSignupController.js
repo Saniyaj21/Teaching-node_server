@@ -4,9 +4,10 @@ import { User } from "../models/userModel.js";
 export const googleSignup = async (req, res) => {
     try {
 
+        
         const { name, email, profilePic } = req.body
         let user = await User.findOne({ email })
-        console.log(user);
+        console.log(req.headers);
 
         if (user) {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
